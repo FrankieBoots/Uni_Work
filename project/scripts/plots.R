@@ -6,16 +6,13 @@ getwd()
 
 #libraries
 
-install.packages("dplyr")
-library(dplyr)
-
-install.packages("tidyverse")
+#install.packages("tidyverse")
 library(tidyverse)
 
-install.packages("readxl")
+#install.packages("readxl")
 library(readxl)
 
-install.packages("lubridate")
+#install.packages("lubridate")
 library("lubridate")
 
 #Bring in raw data
@@ -66,8 +63,6 @@ james
 
 #### Making the line plot ####
 
-
-
 ## Individual ggplots ##
 #I have: james, grace, connie, louise
 
@@ -75,10 +70,6 @@ james
 growth_curve <- louise
 
 # Make seconds into hours
-
-growth_curve <- growth_curve %>%
-  mutate(time_h = hour(seconds_to_period(time_s)))
-
 #plot
 single <- ggplot(growth_curve) +
   geom_line(aes(x = time_s,
@@ -90,9 +81,18 @@ single
 
 # Fancy plot
 
+growth_curve$time_m <- growth_curve$time_s/60
+growth_curve$time_h <- growth_curve$time_m/60
+
 fancy <- ggplot(growth_curve) +
-  geom_line(aes(x = time_s,
+  geom_line(aes(x = time_h,
                 y = mean)) +
+  scale_x_continuous(expand = c(0, 0),
+                     breaks = seq(0, 18, by = 1)) +
+  scale_y_continuous(expand = c(0, 0),
+                     breaks = seq(0, 0.8, by = 0.1)) +
   labs(y = "Mean Plate Reading",
-       x = "Time (S)") +
+       x = "Time (Hours)") +
   theme_classic()
+fancy
+
