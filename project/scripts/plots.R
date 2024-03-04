@@ -20,7 +20,7 @@ all <- read_excel("growth curves raw/Plate Reading GM LH CM JF.xlsx",
                   sheet = "Absorbance 1_01", skip = 9)
 
 #########
-#### PROCESSING DATA ####
+#### PROCESSING DATA - SPECIFIC TO INTENDED GROWTH CURVES ####
 #rename time column for all
 
 ##LOUISE
@@ -59,14 +59,16 @@ james$mean <- rowMeans(james[ , c(2,6)], na.rm=TRUE)
 #remove anything not in plot
 james <- james %>% select("time_s","mean")
 james
-####
+##
 
-#### Making the line plot ####
+## HARRIET
+
+#### Making the line plot - REPEATABLE ####
 
 ## Individual ggplots ##
 #I have: james, grace, connie, louise
 
-#repeatable
+#Making variable for inputting each person's data
 growth_curve <- louise
 
 # Make seconds into hours
@@ -79,11 +81,15 @@ single <- ggplot(growth_curve) +
   theme_classic()
 single
 
-# Fancy plot
+# Fancier plot
 
+## processing
+
+#making minute and hour columns
 growth_curve$time_m <- growth_curve$time_s/60
 growth_curve$time_h <- growth_curve$time_m/60
 
+#plot
 fancy <- ggplot(growth_curve) +
   geom_line(aes(x = time_h,
                 y = mean)) +
