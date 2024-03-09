@@ -1,7 +1,10 @@
 #### Set up ####
 
 ##Packages
+#install.packages("tidyverse")
 library(tidyverse)
+
+#install.packages("readxl")
 library(readxl)
 
 #function for me
