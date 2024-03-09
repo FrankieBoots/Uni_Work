@@ -7,13 +7,13 @@ library(readxl)
 #function for me
 specify_decimal <- function(x, k) trimws(format(round(x, k), nsmall=k))
 
-##Loading in data
+#### Your inputs ####
+
+##Loading in your data
 #Input data under columns 'distance' and 'mw_kDa'
 wb_ladder <- read_excel("project/Figuring out molecular weight.xlsx")
 
-#### my inputs ####
-# If input everything here, the rest should auto-run without any changes needed
-
+#Specifics 
 protein_name <- "PseB"
 solvent_front <- 8.08
 protein_distance <- 3.92
