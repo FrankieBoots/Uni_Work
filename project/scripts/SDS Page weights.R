@@ -44,7 +44,7 @@ wb_ladder %>%
   geom_smooth(method = lm, se = F) +
   theme_classic() +
   annotate("text",x = 0.40, y=1, label = paste(line_equation), size = 4.5, hjust = 0) +
-  annotate("text",x = 0.40, y=2.2, label = paste("PseB = 38.4 kDa"), size = 4.5, hjust = 0)
+  annotate("text",x = 0.40, y=2.2, label = paste("PseB = 35 kDa"), size = 4.5, hjust = 0)
   scale_y_continuous("log(Molecular Weight)") +
   scale_x_continuous("RF Value") +
   theme(axis.text=element_text(size=14),
@@ -56,7 +56,7 @@ ggsave("project/plots/wb_ladder_graph.png", width= 1800, height= 2000, units="px
 
 #find rf
 
-rf <- (8.08-3.74)/8.08
+rf <- (8.08-3.89)/8.08
 rf
 
 #find log(mw)
