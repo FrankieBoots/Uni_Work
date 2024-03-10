@@ -18,8 +18,8 @@ wb_ladder <- read_excel("project/Figuring out molecular weight.xlsx")
 
 #Specifics 
 protein_name <- "PseB"
-solvent_front <- 8.08
-protein_distance <- 3.92
+solvent_front <- 7.84
+protein_distance <- 3.74
 plot_save_location <- "project/plots/"
 
 #### Finding linear regression coefficents ########
@@ -71,7 +71,9 @@ log_Mw
 
 #mw
 PseB_Mw <- 10^(log_Mw)
-PseB_Mw
+
+Mw <- specify_decimal(PseB_Mw,0)
+Mw <- paste(protein_name," = ",Mw," kDa", sep="")
 
 
 #### plotting the calibration curve ####
@@ -81,7 +83,7 @@ wb_ladder %>%
   geom_smooth(method = lm, se = F) +
   theme_classic() +
   annotate("text",x = 0.40, y=1, label = paste(line_equation), size = 4.5, hjust = 0) +
-  annotate("text",x = 0.40, y=2.2, label = paste("PseB = 35 kDa"), size = 4.5, hjust = 0) +
+  annotate("text",x = 0.40, y=2.2, label = Mw, size = 4.5, hjust = 0) +
   scale_y_continuous("log(Molecular Weight)") +
   scale_x_continuous("RF Value") +
   theme(axis.text=element_text(size=14),
@@ -93,3 +95,4 @@ ggsave(paste(plot_save_location,protein_name,
        width= 1800,
        height= 2000,
        units="px")
+
