@@ -19,7 +19,7 @@ wb_ladder <- read_excel("project/Figuring out molecular weight.xlsx")
 #Specifics 
 protein_name <- "PseB"
 solvent_front <- 7.84
-protein_distance <- 3.74
+protein_distance <- 4.08
 plot_save_location <- "project/plots/"
 
 #### Finding linear regression coefficents ########
@@ -62,6 +62,9 @@ line_equation
 
 #find rf
 
+## Alt if want quick Mw
+#protein_distance <- (3.65+3.74+3.74+4.03+4.08)/5
+
 rf <- (solvent_front-protein_distance)/solvent_front
 rf
 
@@ -71,10 +74,10 @@ log_Mw
 
 #mw
 PseB_Mw <- 10^(log_Mw)
+PseB_Mw
 
 Mw <- specify_decimal(PseB_Mw,0)
 Mw <- paste(protein_name," = ",Mw," kDa", sep="")
-
 
 #### plotting the calibration curve ####
 wb_ladder %>%
