@@ -22,7 +22,7 @@ solvent_front <- 7.84
 protein_distance <- 4.08
 plot_save_location <- "project/plots/"
 
-#### Finding linear regression coefficents ########
+#### Finding linear regression coefficients ########
 
 #solvent front:
 wb_ladder
@@ -34,11 +34,9 @@ wb_ladder$rf <- (solvent_front-wb_ladder$distance)/solvent_front
 wb_ladder$log_mw <- log10(wb_ladder$mw_kDa)
 
 ## linear regression
-
 wb_ladder_lm <- lm(log_mw~rf, data=wb_ladder)
 
 #finding the equation
-
 sum_wb_ladder_lm <- summary(wb_ladder_lm)
 sum_wb_ladder_coeff <- sum_wb_ladder_lm[["coefficients"]]
 
@@ -49,7 +47,6 @@ sum_wb_ladder_coeff <- sum_wb_ladder_lm[["coefficients"]]
 mx <- sum_wb_ladder_lm$coefficients["rf","Estimate"]
 c <- sum_wb_ladder_lm$coefficients["(Intercept)","Estimate"]
 r2 <- sum_wb_ladder_lm[["adj.r.squared"]]
-#R^2 = 0.9691
 
 line_equation <- paste("y = ",
                        specify_decimal(mx,2),
@@ -60,9 +57,9 @@ line_equation
 
 #### Finding my MW for PseB ####
 
-#find rf
+##find rf
 
-## Alt if want quick Mw
+# Alt if want quick Mw
 #protein_distance <- (3.65+3.74+3.74+4.03+4.08)/5
 
 rf <- (solvent_front-protein_distance)/solvent_front
@@ -92,7 +89,7 @@ wb_ladder %>%
   theme(axis.text=element_text(size=14),
         axis.title=element_text(size=14))
 
-
+## Save curve to inputted location
 ggsave(paste(plot_save_location,protein_name,
              "_SDSPage_Mw.png",sep = ""),
        width= 1800,
