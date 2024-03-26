@@ -14,12 +14,22 @@ specify_decimal <- function(x, k) trimws(format(round(x, k), nsmall=k))
 
 ##Loading in your data
 #Input data under columns 'distance' and 'mw_kDa'
-wb_ladder <- read_excel("project/Figuring out molecular weight.xlsx")
+
+## From excel
+#wb_ladder <- read_excel("project/Figuring out molecular weight.xlsx")
+
+##manual input
+wb_ladder <- data_frame(
+  mw_kDa = c(10,15,25,35,40,55,70,100,130,180),
+  distance = c(8.46,7.35,5.86,5.14,4.35,3.3,2.63,1.82,0.8, 0.11)
+)
+##check
+view(wb_ladder)
 
 #Specifics 
-protein_name <- "PseB"
-solvent_front <- 7.84
-protein_distance <- 4.08
+protein_name <- "PseC"
+solvent_front <- 9.39
+protein_distance <- 3.89
 plot_save_location <- "project/plots/"
 
 #### Finding linear regression coefficients ########
