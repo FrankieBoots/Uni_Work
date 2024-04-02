@@ -20,16 +20,16 @@ specify_decimal <- function(x, k) trimws(format(round(x, k), nsmall=k))
 
 ##manual input
 wb_ladder <- data_frame(
-  mw_kDa = c(10,15,25,35,40,55,70,100,130,180),
-  distance = c(8.46,7.35,5.86,5.14,4.35,3.3,2.63,1.82,0.8, 0.11)
-)
+  mw_kDa = c(10,15,25,35,40,55,70,100,130,180),  
+  distance = c(6.55,5.63,4.65,4.03,3.36,2.65,2.03,1.43,0.82,0.32)
+  )
 ##check
 view(wb_ladder)
 
 #Specifics 
 protein_name <- "PseC"
-solvent_front <- 9.39
-protein_distance <- 3.89
+solvent_front <- 7.43
+protein_distance <- 3.62
 plot_save_location <- "project/plots/"
 
 #### Finding linear regression coefficients ########
